@@ -1,0 +1,46 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:vm="using:PartnerInteraction.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="PartnerInteraction.Views.PartnersListView"
+			 x:DataType="vm:PartnersListViewModel">
+	<!--Компоненты системы должны иметь единый согласованный внешний
+	вид, соответствующий руководству по стилю, представленному в
+	Приложении 2. Заголовок окна (страницы) должен соответствовать
+	назначению. Следует установить иконку приложения, если это реализуемо в
+	рамках платформы, и логотип компании на главной форме, из ресурсов.-->
+	<Grid RowDefinitions="60,*,5" Background="#F4E8D3">
+		
+		<TextBlock Grid.Row="0" Text="Список партнеров" FontSize="25" HorizontalAlignment="Center"  />
+		
+		<ListBox Grid.Row="1" ItemsSource="{Binding Partners}" HorizontalAlignment="Center" Background="#F4E8D3">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Border BorderBrush="Black" BorderThickness="1" Background="White">
+						<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="15,5">
+
+							<StackPanel Width="550">
+								<StackPanel Orientation="Horizontal">
+									<TextBlock Text="{Binding Name}"/>
+									<TextBlock Text=" | "/>
+									<TextBlock Text="{Binding Type}"/>
+								</StackPanel>
+
+								<TextBlock Text="{Binding Director}"/>
+								<TextBlock Text="{Binding TelephoneNumber}"/>
+								<TextBlock Text="{Binding Rating, StringFormat='Рейтинг: {0}'}"/>
+							</StackPanel>
+
+							<TextBlock Text="{Binding Discount, StringFormat='{}{0}%'}" VerticalAlignment="Center"/>
+
+						</StackPanel>
+					</Border>
+
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+	</Grid>
+
+</UserControl>
