@@ -1,9 +1,17 @@
-﻿namespace PartnerInteraction.ViewModels
+﻿using Avalonia.Controls;
+using PartnerInteraction.Views;
+using ReactiveUI;
+
+namespace PartnerInteraction.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-#pragma warning disable CA1822 // Mark members as static
-        public string Greeting => "Welcome to Avalonia!";
-#pragma warning restore CA1822 // Mark members as static
+        private UserControl _currentView;
+        public UserControl CurrentView { get => _currentView; set => this.RaiseAndSetIfChanged(ref _currentView, value); }
+
+        public MainWindowViewModel()
+        {
+            CurrentView = new PartnersListView();
+        }
     }
 }
