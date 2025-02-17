@@ -1,28 +1,23 @@
-using System;
 using System.Collections.Generic;
 using PartnerInteraction.Models;
-using System.Collections.ObjectModel;
-using ReactiveUI;
 using System.Linq;
 using PartnerInteraction.Models.DTOs;
 using Microsoft.EntityFrameworkCore;
+using System;
+using PartnerIntercation.Views;
 
 namespace PartnerInteraction.ViewModels
 {
     public class PartnersListViewModel : ViewModelBase
     {
         private DemoContext _db;
-        private List<Partner> _partners => _db.Partners
-            .Include(partner => partner.PartnerType)
-            .Include(partner => partner.PartnersProducts)
-            .ToList(); 
-        public string Cat => "cat name";
-        public PartnersListViewModel()
+        private MainWindowViewModel _mainVM;
+        public PartnersListViewModel(MainWindowViewModel mainVM)
         {
+            _mainVM = mainVM;
             _db = new DemoContext();
         }
-
-        public ushort GetDiscount(Partner partner)
+        private ushort GetDiscount(Partner partner)
         {
             int productsSum = partner.PartnersProducts.Sum(products => products.Amount);
             return productsSum switch
@@ -33,8 +28,30 @@ namespace PartnerInteraction.ViewModels
                 _ => 0
             };
         }
+        private List<Partner> _partners
+        {
+            get
+            {
+                List<Partner> partners = new List<Partner>();
+                try
+                {
+                    partners = _db.Partners
+                        .Include(partner => partner.PartnerType)
+                        .Include(partner => partner.PartnersProducts)
+                        .ToList();
+                    _mainVM.Message = "";
+                }
+                catch (Exception ex)
+                {
+                    _mainVM.SetError($"Ошибка получения партнеров. Дополнительно: {ex.Message}");
+                }
+                return partners;
+
+            }
+        }
         public List<PartnerDto> Partners => _partners.Select(partner => new PartnerDto
         {
+            Id = partner.Id,
             Name = partner.Name,
             Type = partner.PartnerType.Name,
             Director = partner.Director ?? "Нет информации о директоре",
@@ -42,5 +59,8 @@ namespace PartnerInteraction.ViewModels
             Rating = partner.Rating,
             Discount = GetDiscount(partner)
         }).ToList();
+        public void CreatePartner() => _mainVM.CurrentView = new PartnerInfoView(_mainVM, _db);
+        public void EditPartnerById(int partnerId) => _mainVM.CurrentView = new PartnerInfoView(_mainVM, _db, partnerId);
+        
     }
 }

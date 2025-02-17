@@ -7,9 +7,9 @@ namespace PartnerInteraction.Views;
 
 public partial class PartnersListView : UserControl
 {
-    public PartnersListView()
+    public PartnersListView(MainWindowViewModel mainVM)
     {
         InitializeComponent();
-        DataContext = new PartnersListViewModel();
+        DataContext = new PartnersListViewModel(mainVM);
     }
 }
