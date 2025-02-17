@@ -14,7 +14,7 @@
 		<ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
 			<StackPanel >
 				<TextBlock Text="Наименование" Classes="inputName"/>
-				<TextBox Text="{Binding Partner.Name}"/>
+				<TextBox Text="{Binding Partner.Name}" Classes="standard"/>
 
 				<TextBlock Text="Тип партнера" Classes="inputName"/>
 				<ComboBox ItemsSource="{Binding PartnerTypes}" SelectedItem="{Binding PartnerType}">
@@ -23,16 +23,18 @@
 							<TextBlock Text="{Binding Name}"/>
 						</DataTemplate>
 					</ComboBox.ItemTemplate>
-					</ComboBox>
+				</ComboBox>
 
 				<TextBlock Text="Рейтинг" Classes="inputName"/>
-				<TextBox Text="{Binding Partner.Rating}"/>
+				<ContentControl Width="550">
+				<NumericUpDown Minimum="0" Maximum="10" Value="{Binding  Partner.Rating}" HorizontalAlignment="Left"/>
+				</ContentControl>
 
 				<TextBlock Text="Адрес" Classes="inputName"/>
-				<TextBox Text="{Binding Partner.LegalAddress}"/>
+				<TextBox Text="{Binding Partner.LegalAddress}" Classes="standard"/>
 
 				<TextBlock Text="ФИО директора" Classes="inputName"/>
-				<TextBox Text="{Binding Partner.Director}"/>
+				<TextBox Text="{Binding Partner.Director}" Classes="standard"/>
 
 				<TextBlock Text="Телефон" Classes="inputName"/>
 				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -41,10 +43,10 @@
 				</StackPanel>
 
 				<TextBlock Text="E-mail компании" Classes="inputName"/>
-				<TextBox Text="{Binding Partner.Email}"/>
+				<TextBox Text="{Binding Partner.Email}" Classes="standard"/>
 				
 				<TextBlock Text="ИНН компании" Classes="inputName"/>
-				<TextBox Text="{Binding Partner.Inn}"/>
+				<TextBox Text="{Binding Partner.Inn}" Classes="standard"/>
 				
 				<Button Content="Сохранить" Command="{Binding CreateOrUpdatePartner}"/>
 
