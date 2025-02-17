@@ -1,22 +1,3 @@
--- DROP SCHEMA public;
-
-CREATE SCHEMA public AUTHORIZATION pg_database_owner;
-
-COMMENT ON SCHEMA public IS 'standard public schema';
--- public.product_types определение
-
--- Drop table
-
--- DROP TABLE public.product_types;
-
-CREATE TABLE public.product_types (
-	type_name varchar NOT NULL,
-	id serial4 NOT NULL,
-	CONSTRAINT product_types_pk PRIMARY KEY (id),
-	CONSTRAINT product_types_unique UNIQUE (type_name)
-);
-
-
 -- public.material_types определение
 
 -- Drop table
@@ -45,21 +26,18 @@ CREATE TABLE public.partner_types (
 );
 
 
--- public.products определение
+-- public.product_types определение
 
 -- Drop table
 
--- DROP TABLE public.products;
+-- DROP TABLE public.product_types;
 
-CREATE TABLE public.products (
+CREATE TABLE public.product_types (
+	type_name varchar NOT NULL,
 	id serial4 NOT NULL,
-	type_id serial4 NOT NULL,
-	"name" varchar NOT NULL,
-	articul varchar NOT NULL,
-	min_cost_for_partner numeric NOT NULL,
-	CONSTRAINT products_articul_unique UNIQUE (articul),
-	CONSTRAINT products_pk PRIMARY KEY (id),
-	CONSTRAINT products_product_types_fk FOREIGN KEY (type_id) REFERENCES public.product_types(id) ON DELETE RESTRICT ON UPDATE CASCADE
+	type_factor float4 NOT NULL,
+	CONSTRAINT product_types_pk PRIMARY KEY (id),
+	CONSTRAINT product_types_unique UNIQUE (type_name)
 );
 
 
@@ -81,6 +59,24 @@ CREATE TABLE public.partners (
 	legal_address varchar NULL,
 	CONSTRAINT partners_pk PRIMARY KEY (id),
 	CONSTRAINT partners_partner_types_fk FOREIGN KEY (partner_type_id) REFERENCES public.partner_types(id) ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+
+-- public.products определение
+
+-- Drop table
+
+-- DROP TABLE public.products;
+
+CREATE TABLE public.products (
+	id serial4 NOT NULL,
+	type_id serial4 NOT NULL,
+	"name" varchar NOT NULL,
+	articul varchar NOT NULL,
+	min_cost_for_partner numeric NOT NULL,
+	CONSTRAINT products_articul_unique UNIQUE (articul),
+	CONSTRAINT products_pk PRIMARY KEY (id),
+	CONSTRAINT products_product_types_fk FOREIGN KEY (type_id) REFERENCES public.product_types(id) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 

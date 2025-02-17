@@ -12,6 +12,7 @@ namespace PartnerInteraction.Models
 
         public string TypeName { get; set; } = null!;
         public int Id { get; set; }
+        public float TypeFactor { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }
     }
