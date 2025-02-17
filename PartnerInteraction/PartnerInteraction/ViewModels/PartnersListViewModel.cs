@@ -5,6 +5,7 @@ using PartnerInteraction.Models.DTOs;
 using Microsoft.EntityFrameworkCore;
 using System;
 using PartnerIntercation.Views;
+using PartnerInteraction.Views;
 
 namespace PartnerInteraction.ViewModels
 {
@@ -61,6 +62,7 @@ namespace PartnerInteraction.ViewModels
         }).ToList();
         public void CreatePartner() => _mainVM.CurrentView = new PartnerInfoView(_mainVM, _db);
         public void EditPartnerById(int partnerId) => _mainVM.CurrentView = new PartnerInfoView(_mainVM, _db, partnerId);
+        public void GetPartnerReleasesById(int partnerId) => _mainVM.CurrentView = new PartnerReleasesView(_mainVM, _db, partnerId);
         
     }
 }

@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:vm="using:PartnerInteraction.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="PartnerInteraction.Views.PartnerReleasesView"
+			 x:DataType="vm:PartnerReleasesViewModel">
+	<Grid RowDefinitions="60,40,*">
+
+		<TextBlock Grid.Row="0" Text="{Binding PartnerName, StringFormat='Реализации партнера {0}'}" Classes="title" />
+		<Button Grid.Row="1" Content="Назад" Command="{Binding GoBack}"  HorizontalAlignment="Left"/>
+
+		<ListBox Grid.Row="2" ItemsSource="{Binding ReleaseHistory}" HorizontalAlignment="Center" Background="#F4E8D3">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Border BorderBrush="Black" BorderThickness="1" Background="White">
+						<StackPanel VerticalAlignment="Center" Margin="15,5" Width="550">
+
+								<TextBlock Text="{Binding ProductTypeName, StringFormat='Тип продукта: {0}'}"/>
+								<TextBlock Text="{Binding ProductName, StringFormat='Продукт: {0}'}"/>
+								<TextBlock Text="{Binding Amount, StringFormat='Количество: {0}'}"/>
+								<TextBlock Text="{Binding ReleaseDate, StringFormat='Дата реализации: {0}'}"/>
+
+						</StackPanel>
+					</Border>
+
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+	</Grid>
+</UserControl>
