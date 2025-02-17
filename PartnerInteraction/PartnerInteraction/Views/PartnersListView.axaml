@@ -6,16 +6,12 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="PartnerInteraction.Views.PartnersListView"
 			 x:DataType="vm:PartnersListViewModel">
-	<!--Компоненты системы должны иметь единый согласованный внешний
-	вид, соответствующий руководству по стилю, представленному в
-	Приложении 2. Заголовок окна (страницы) должен соответствовать
-	назначению. Следует установить иконку приложения, если это реализуемо в
-	рамках платформы, и логотип компании на главной форме, из ресурсов.-->
-	<Grid RowDefinitions="60,*,5" Background="#F4E8D3">
+	<Grid RowDefinitions="60,40,*">
 		
-		<TextBlock Grid.Row="0" Text="Список партнеров" FontSize="25" HorizontalAlignment="Center"  />
-		
-		<ListBox Grid.Row="1" ItemsSource="{Binding Partners}" HorizontalAlignment="Center" Background="#F4E8D3">
+		<TextBlock Grid.Row="0" Text="Список партнеров" Classes="title" />
+		<Button Grid.Row="1" Content="Добавить" Command="{Binding CreatePartner}" HorizontalAlignment="Center"/>
+
+		<ListBox Grid.Row="2" ItemsSource="{Binding Partners}" HorizontalAlignment="Center" Background="#F4E8D3" >
 			<ListBox.ItemTemplate>
 				<DataTemplate>
 					<Border BorderBrush="Black" BorderThickness="1" Background="White">
@@ -34,6 +30,10 @@
 							</StackPanel>
 
 							<TextBlock Text="{Binding Discount, StringFormat='{}{0}%'}" VerticalAlignment="Center"/>
+							
+							<Button Content="Изменить"
+									Command="{Binding DataContext(vm:PartnersListViewModel).EditPartnerById, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
+									CommandParameter="{Binding Id}" />
 
 						</StackPanel>
 					</Border>

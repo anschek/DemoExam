@@ -1,0 +1,56 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:PartnerInteraction.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="PartnerIntercation.Views.PartnerInfoView"
+	         x:DataType="vm:PartnerInfoViewModel">
+	<Grid RowDefinitions="60,40,*">
+
+		<TextBlock  Grid.Row="0" Text="{Binding Title}" Classes="title"/>
+		<Button Grid.Row="1" Content="Назад" Command="{Binding GoBack}" HorizontalAlignment="Left"/>
+
+		<ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+			<StackPanel >
+				<TextBlock Text="Наименование" Classes="inputName"/>
+				<TextBox Text="{Binding Partner.Name}"/>
+
+				<TextBlock Text="Тип партнера" Classes="inputName"/>
+				<ComboBox ItemsSource="{Binding PartnerTypes}" SelectedItem="{Binding PartnerType}">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Name}"/>
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+					</ComboBox>
+
+				<TextBlock Text="Рейтинг" Classes="inputName"/>
+				<TextBox Text="{Binding Partner.Rating}"/>
+
+				<TextBlock Text="Адрес" Classes="inputName"/>
+				<TextBox Text="{Binding Partner.LegalAddress}"/>
+
+				<TextBlock Text="ФИО директора" Classes="inputName"/>
+				<TextBox Text="{Binding Partner.Director}"/>
+
+				<TextBlock Text="Телефон" Classes="inputName"/>
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+					<TextBlock Text="+7 " FontSize="20" Width="50"/>
+					<TextBox Text="{Binding Partner.TelephoneNumber}" Classes="short"/>
+				</StackPanel>
+
+				<TextBlock Text="E-mail компании" Classes="inputName"/>
+				<TextBox Text="{Binding Partner.Email}"/>
+				
+				<TextBlock Text="ИНН компании" Classes="inputName"/>
+				<TextBox Text="{Binding Partner.Inn}"/>
+				
+				<Button Content="Сохранить" Command="{Binding CreateOrUpdatePartner}"/>
+
+			</StackPanel>
+		</ScrollViewer>
+
+	</Grid>
+
+</UserControl>
