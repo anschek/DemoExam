@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Avalonia.Media.Imaging;
 using MaterialsMnagement.Models;
 using MaterialsMnagement.Models.DTOs;
@@ -35,6 +36,7 @@ namespace MaterialsMnagement.ViewModels
         {
             Materials = _originalMaterials
                 .Where(isMaterialWithMatchingType)
+                .Where(MaterialIsMatchesSearchQuery)
                 .Select(MapToMaterialListItem)
                 .ToList();
         }
@@ -82,6 +84,25 @@ namespace MaterialsMnagement.ViewModels
             if (_selectedType.Id == 0) return true;
             // ѕодход€щий тип
             return _selectedType.Id == material.TypeNavigation.Id;
+        }
+
+        // поиск
+        private string _searchQuery;
+        public string SearchQuery
+        {
+            get => _searchQuery;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _searchQuery, value);
+                UpdateMaterials();
+            }
+        }
+        private bool MaterialIsMatchesSearchQuery(Material material)
+        {
+            // —трока пуста (пользовать ничего конкретного не ищет)
+            if (string.IsNullOrWhiteSpace(_searchQuery)) return true;
+            // Ќазвание или описание материала содержит поисковый запрос
+            return (material.Name + material.Description).Contains(_searchQuery);
         }
 
         // сортировка: возрастание/убывание, название/стоимость/остаток

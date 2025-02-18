@@ -16,6 +16,7 @@
 					</DataTemplate>
 				</ComboBox.ItemTemplate>
 			</ComboBox>
+			<TextBox Watermark="Поиск" Text="{Binding SearchQuery}"/>
 		</StackPanel>
 		<ListBox Grid.Row="2"  ItemsSource="{Binding Materials}" HorizontalAlignment="Center" Margin="30,0" Background="#AAFFFFFF">
 			<ListBox.ItemTemplate>
