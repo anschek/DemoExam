@@ -9,6 +9,7 @@
 	<Grid RowDefinitions="40,60,*">
 		<TextBlock Grid.Row="0" Text="Материалы" HorizontalAlignment="Center"/>
 		<StackPanel Grid.Row="1" Orientation="Horizontal">
+			<!--фильтрация-->
 			<ComboBox ItemsSource="{Binding MaterialTypes}" SelectedItem="{Binding SelectedType}">
 				<ComboBox.ItemTemplate>
 					<DataTemplate>
@@ -16,7 +17,13 @@
 					</DataTemplate>
 				</ComboBox.ItemTemplate>
 			</ComboBox>
+			<!--поиск-->
 			<TextBox Watermark="Поиск" Text="{Binding SearchQuery}"/>
+			<!--сортировка-->			
+			
+			<ComboBox ItemsSource="{Binding SortingTypes}" SelectedItem="{Binding SelectedSortingType}"/>
+			<ComboBox ItemsSource="{Binding SortingAsc}" SelectedItem="{Binding SelectedSortingAsc}"/>
+			
 		</StackPanel>
 		<ListBox Grid.Row="2"  ItemsSource="{Binding Materials}" HorizontalAlignment="Center" Margin="30,0" Background="#AAFFFFFF">
 			<ListBox.ItemTemplate>

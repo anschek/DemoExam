@@ -34,7 +34,18 @@ namespace MaterialsMnagement.ViewModels
         // обновление материалов после некоторых действий
         private void UpdateMaterials()
         {
-            Materials = _originalMaterials
+            var sortedMaterials = SelectedSortingType
+            switch
+            {
+                "название" => _originalMaterials.OrderBy(m => m.Name),
+                "остаток" => _originalMaterials.OrderBy(m => m.Amount),
+                "стоимость" => _originalMaterials.OrderBy(m => m.Cost),
+                _ => _originalMaterials
+            };
+
+            if(SelectedSortingAsc!=_asc) sortedMaterials = sortedMaterials.Reverse();
+
+            Materials = sortedMaterials
                 .Where(isMaterialWithMatchingType)
                 .Where(MaterialIsMatchesSearchQuery)
                 .Select(MapToMaterialListItem)
@@ -105,8 +116,32 @@ namespace MaterialsMnagement.ViewModels
             return (material.Name + material.Description).Contains(_searchQuery);
         }
 
-        // сортировка: возрастание/убывание, название/стоимость/остаток
+        // сортировка
+        private static string _asc = "По возрастанию";
+        //private List<string> _sortingAsc = [ _asc, "По убыванию" ];
+        public List<string> SortingAsc => [_asc, "По убыванию"];
 
-        // поиск: название и описание
+        private string _selectedSortingAsc = _asc;
+        public string SelectedSortingAsc
+        {
+            get => _selectedSortingAsc;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _selectedSortingAsc, value);
+                UpdateMaterials();
+            }
+        }
+
+        public List<string> SortingTypes => [" - ", "название", "остаток", "стоимость"];
+        private string _selectedSortingtype = " - ";
+        public string SelectedSortingType
+        {
+            get => _selectedSortingtype;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _selectedSortingtype, value);
+                UpdateMaterials();
+            }
+        }
     }
 }
