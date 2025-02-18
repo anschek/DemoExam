@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:MaterialsMnagement.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MaterialsMnagement.Views.MaterialsListView"
+			 x:DataType="vm:MaterialsListViewModel">
+	<Grid RowDefinitions="40,*">
+		<TextBlock Grid.Row="0" Text="Материалы" HorizontalAlignment="Center"/>
+		<ListBox Grid.Row="1"  ItemsSource="{Binding Materials}" HorizontalAlignment="Center" Margin="30,0" Background="#AAFFFFFF">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<StackPanel Orientation="Horizontal">
+						<StackPanel Width="400">
+							<TextBlock Text="{Binding Name, StringFormat='Название: {0}'}"/>
+							<TextBlock Text="{Binding TypeName, StringFormat='Тип материала: {0}'}"/>
+							<TextBlock Text="{Binding Amount, StringFormat='Остаток на складе: {0}'}"/>
+							<TextBlock Text="{Binding MinimalAmount, StringFormat='Минимальное количество: {0}'}"/>
+							<TextBlock Text="{Binding Cost, StringFormat='Цена: {0}'}"/>
+							<TextBlock Text="{Binding Description, StringFormat='Описание: {0}'}" TextWrapping="Wrap"/>
+						</StackPanel>
+						<Image Source="{Binding Image}" MaxWidth="100"/>
+					</StackPanel>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+	</Grid>
+</UserControl>

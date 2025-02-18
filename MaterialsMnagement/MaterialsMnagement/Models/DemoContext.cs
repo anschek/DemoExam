@@ -39,9 +39,7 @@ public partial class DemoContext : DbContext
             entity.Property(e => e.Description)
                 .HasColumnType("character varying")
                 .HasColumnName("description");
-            entity.Property(e => e.Image)
-                .HasColumnType("character varying")
-                .HasColumnName("image");
+            entity.Property(e => e.Image).HasColumnName("image");
             entity.Property(e => e.MinimalAmount).HasColumnName("minimal_amount");
             entity.Property(e => e.Name)
                 .HasColumnType("character varying")

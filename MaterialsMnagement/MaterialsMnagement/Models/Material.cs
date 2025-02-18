@@ -23,7 +23,7 @@ public partial class Material
 
     public int PackQuantity { get; set; }
 
-    public string? Image { get; set; }
+    public byte[]? Image { get; set; }
 
     public virtual MaterialType TypeNavigation { get; set; } = null!;
 
