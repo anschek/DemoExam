@@ -19,13 +19,17 @@
 			</ComboBox>
 			<!--поиск-->
 			<TextBox Watermark="Поиск" Text="{Binding SearchQuery}"/>
-			<!--сортировка-->			
-			
+			<!--сортировка-->
 			<ComboBox ItemsSource="{Binding SortingTypes}" SelectedItem="{Binding SelectedSortingType}"/>
 			<ComboBox ItemsSource="{Binding SortingAsc}" SelectedItem="{Binding SelectedSortingAsc}"/>
-			
+			<!--изменение количества-->
+			<Button Content="Изменить минимальное количество"
+				Command="{Binding ChangeMinimalAmountCommand}"
+				IsVisible="{Binding IsButtonVisible}" />
+			<TextBlock Text="{Binding IsButtonVisible}" />
 		</StackPanel>
-		<ListBox Grid.Row="2"  ItemsSource="{Binding Materials}" HorizontalAlignment="Center" Margin="30,0" Background="#AAFFFFFF">
+		<ListBox x:Name="MaterialsListBox" Grid.Row="2"  ItemsSource="{Binding Materials}" HorizontalAlignment="Center" Margin="30,0" Background="#AAFFFFFF" SelectionMode="Multiple,Toggle" SelectedItems="{Binding SelectedMaterials}"
+				 SelectionChanged="OnSelectionChanged">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
 					<StackPanel Orientation="Horizontal">

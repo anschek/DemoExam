@@ -1,7 +1,8 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
+using System.Windows.Input;
 using Avalonia.Media.Imaging;
 using MaterialsMnagement.Models;
 using MaterialsMnagement.Models.DTOs;
@@ -19,6 +20,7 @@ namespace MaterialsMnagement.ViewModels
             _mainVm = mainVm;
             _db = new DemoContext();
             UpdateMaterials();
+            ChangeMinimalAmountCommand = ReactiveCommand.Create(OnChangeMinimalAmount);
         }
 
         // исходные материалы из бд (чтобы данные не тер€лись при фильтрации и поиске)
@@ -142,6 +144,19 @@ namespace MaterialsMnagement.ViewModels
                 this.RaiseAndSetIfChanged(ref _selectedSortingtype, value);
                 UpdateMaterials();
             }
+        }
+
+        // изменение минимального количества
+        private readonly ObservableCollection<MaterialListItem> _selectedMaterials = new();
+        public ObservableCollection<MaterialListItem> SelectedMaterials => _selectedMaterials;
+
+        private bool _isButtonVisible = false;
+        public bool IsButtonVisible {get => _isButtonVisible; set => this.RaiseAndSetIfChanged(ref _isButtonVisible, value); }
+
+        public ICommand ChangeMinimalAmountCommand { get; }
+        private void OnChangeMinimalAmount()
+        {
+            // Ћогика открыти€ модального окна
         }
     }
 }
