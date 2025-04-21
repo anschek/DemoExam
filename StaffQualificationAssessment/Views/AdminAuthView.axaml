@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="StaffQualificationAssessment.Views.AdminAuthView"
+			 xmlns:vm="using:StaffQualificationAssessment.ViewModels"
+             x:DataType="vm:AdminAuthViewModel">
+	<StackPanel>
+		<TextBlock Text="Регистрация" HorizontalAlignment="Center"/>
+		<Button Content="Назад" Command="{Binding MainVm.GoToAuthView}"/>
+		<TextBlock Text="Чтобы зарегистрировать нового пользователя, введите учетные данные администратора" TextWrapping="Wrap"/>
+		<TextBlock Text="Логин"/>
+		<TextBox Text="{Binding Login}"/>		
+		<TextBlock Text="Пароль"/>
+		<TextBox Text="{Binding Password}"/>
+		<Button Content="Далее" Command="{Binding LogIn}"/>
+	</StackPanel>
+</UserControl>

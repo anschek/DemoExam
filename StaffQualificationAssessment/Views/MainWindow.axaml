@@ -1,0 +1,18 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450" MinWidth="450" MinHeight="200"
+        x:Class="StaffQualificationAssessment.Views.MainWindow"
+        xmlns:vm="using:StaffQualificationAssessment.ViewModels"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="StaffQualificationAssessment">
+
+    <Grid RowDefinitions="20,*,20" Margin="50,5">
+		<TextBlock      Grid.Row="0" Text="Оценка квалификации персонала"/>
+		<ContentControl Grid.Row="1" Content="{Binding CurrentView}"/>
+		<TextBlock      Grid.Row="2" Text="{Binding ErrorMessage}" Foreground="Red"/>
+	</Grid>
+
+</Window>
