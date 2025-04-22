@@ -16,7 +16,7 @@
 		
 		<StackPanel IsVisible="{Binding HaveAccessAnotherUsers}">
 			<TextBlock Text="Пользователь"/>
-			<ComboBox ItemsSource="{Binding AvailableUsers}">
+			<ComboBox ItemsSource="{Binding AvailableUsers}" SelectedItem="{Binding SelectedUser}">
 				<ComboBox.ItemTemplate>
 					<DataTemplate>
 						<StackPanel Orientation="Horizontal">
@@ -30,12 +30,14 @@
 			</ComboBox>
 		</StackPanel>
 		
-		<TextBlock Text="Активности"/>
-		<ListBox>
+		<Button Content="Показать активности" Command="{Binding GetActivities}"/>
+		<ListBox ItemsSource="{Binding Activities}">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
 					<StackPanel Orientation="Horizontal">
-						
+						<TextBlock FontWeight="Bold"  Text="{Binding Metric.Criteria.Title}" Margin="10,0"/>
+						<TextBlock Text="{Binding Metric.Title}" Margin="10,0"/>
+						<TextBlock Text="{Binding Metric.Weight}" Margin="10,0"/>
 					</StackPanel>
 				</DataTemplate>
 			</ListBox.ItemTemplate>
