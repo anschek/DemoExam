@@ -29,10 +29,10 @@ namespace RatingCalculationLib
             }
             catch
             {
-                return -1;
+                return 0;
             }
         }
-        public IEnumerable<RatingResult> GetRatingList(IEnumerable<int> userIds, int userId)
+        public IEnumerable<RatingResult> GetRatingList(IEnumerable<int> userIds)
         {
             try
             {
