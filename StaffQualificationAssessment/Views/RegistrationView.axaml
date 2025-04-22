@@ -1,0 +1,34 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="StaffQualificationAssessment.Views.RegistrationView"
+			 xmlns:vm="using:StaffQualificationAssessment.ViewModels"
+             x:DataType="vm:RegistrationViewModel">
+	<StackPanel>
+		<TextBlock Text="Регистрация" HorizontalAlignment="Center"/>
+		<Button Content="Назад" Command="{Binding MainVm.GoToAuthView}"/>
+
+		<StackPanel>
+			<TextBlock Text="*Фамилия"/>
+			<TextBox Text="{Binding Surname}"/>		
+			<TextBlock Text="*Имя"/>
+			<TextBox Text="{Binding Name}"/>		
+			<TextBlock Text="*Отчество"/>
+			<TextBox Text="{Binding Patronimyc}"/>		
+			<TextBlock Text="*Год рождения"/>
+			<MaskedTextBox Mask="9999" Text="{Binding YearOfBirth}"/>		
+			<TextBlock Text="*Должность"/>
+			<ComboBox ItemsSource="{Binding Posts}" DisplayMemberBinding="{Binding Title}" SelectedItem="{Binding SelectedPost}"/>		
+			<TextBlock Text="*Код сотрудника"/>
+			<MaskedTextBox Mask="9999" Text="{Binding UserCode}"/>		
+			<TextBlock Text="Отдел"/>
+			<ComboBox ItemsSource="{Binding Departments}" DisplayMemberBinding="{Binding Title}" SelectedItem="{Binding SelectedDepartment}"/>				
+		</StackPanel>
+		
+		<Button Content="Сохранить" Command="{Binding Register}"/>
+		<TextBlock Foreground="Green" Text="{Binding Message}"/>
+
+	</StackPanel>
+</UserControl>
