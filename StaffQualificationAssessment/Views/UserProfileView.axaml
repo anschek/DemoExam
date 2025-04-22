@@ -1,0 +1,44 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="StaffQualificationAssessment.Views.UserProfileView"
+			xmlns:vm="using:StaffQualificationAssessment.ViewModels"
+             x:DataType="vm:UserProfileViewModel">
+	<StackPanel>
+		<TextBlock Text="Профиль" HorizontalAlignment="Center"/>
+		<Button Content="Назад" Command="{Binding MainVm.GoToAuthView}"/>
+		<TextBlock Text="{Binding CurrentUser.Podst.Title, StringFormat='Роль: {0}'}"/>
+		<TextBlock Text="{Binding CurrentUser.Surname, StringFormat='Фамилия: {0}'}"/>
+		<TextBlock Text="{Binding CurrentUser.Name, StringFormat='Имя: {0}'}"/>
+		<TextBlock Text="{Binding CurrentUser.Patronymic, StringFormat='Отчество: {0}'}"/>
+		
+		<StackPanel IsVisible="{Binding HaveAccessAnotherUsers}">
+			<TextBlock Text="Пользователь"/>
+			<ComboBox ItemsSource="{Binding AvailableUsers}">
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal">
+							<TextBlock FontWeight="Bold" Text="{Binding Podst.Title}" Margin="10,0"/>
+							<TextBlock Text="{Binding Surname}" Margin="10,0"/>
+							<TextBlock Text="{Binding Name}" Margin="10,0"/>
+							<TextBlock Text="{Binding Patronymic}"/>
+						</StackPanel>
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+		</StackPanel>
+		
+		<TextBlock Text="Активности"/>
+		<ListBox>
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<StackPanel Orientation="Horizontal">
+						
+					</StackPanel>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+	</StackPanel>
+</UserControl>
