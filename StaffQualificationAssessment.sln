@@ -7,6 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StaffQualificationAssessmen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RatingCalculationLib", "RatingCalculationLib\RatingCalculationLib.csproj", "{E258247D-65E2-4F0B-B8E5-6062B17D4208}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RatingCalculationLib.Test", "RatingCalculationLib.Test\RatingCalculationLib.Test.csproj", "{B2F1DE9A-186B-4736-BC89-216D279C1392}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{9B7BFC94-1973-4A7C-AAA4-04384D8B3756}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1F2C9734-1B66-4FA4-A930-987B6426910E} = {1F2C9734-1B66-4FA4-A930-987B6426910E}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +28,14 @@ Global
 		{E258247D-65E2-4F0B-B8E5-6062B17D4208}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E258247D-65E2-4F0B-B8E5-6062B17D4208}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E258247D-65E2-4F0B-B8E5-6062B17D4208}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2F1DE9A-186B-4736-BC89-216D279C1392}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2F1DE9A-186B-4736-BC89-216D279C1392}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2F1DE9A-186B-4736-BC89-216D279C1392}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2F1DE9A-186B-4736-BC89-216D279C1392}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B7BFC94-1973-4A7C-AAA4-04384D8B3756}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B7BFC94-1973-4A7C-AAA4-04384D8B3756}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B7BFC94-1973-4A7C-AAA4-04384D8B3756}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B7BFC94-1973-4A7C-AAA4-04384D8B3756}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
